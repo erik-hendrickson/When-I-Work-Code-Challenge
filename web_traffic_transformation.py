@@ -22,10 +22,15 @@ def main():
 
     base_url = 'https://public.wiwdata.com/engineering-challenge/data/'
 
+    # save_raw_files is a flag used to indicate the desire to save the raw data files after download
+    # Set to 1 to save the files
+
+    save_raw_files = 0
+
     # End Variables #
 
     # Get all files using above variables, store data in dataframe df
-    df = get_raw_data(base_url, filenames, extension)
+    df = get_raw_data(base_url, filenames, extension, save_raw_files)
 
     # Pivot the raw data
     # Index on user_id, use path values as columns, length as values
@@ -41,7 +46,7 @@ def pivot_raw_data(df):
     return df_pivoted
 
 
-def get_raw_data(base_url, filenames, extension):
+def get_raw_data(base_url, filenames, extension, save_raw_files):
 
     df_all_data = pd.DataFrame()
 
@@ -56,9 +61,8 @@ def get_raw_data(base_url, filenames, extension):
             print('Error with ' + full_url)
             sys.exit(1)
 
-        # Save downloaded csv for debugging purposes
-        # Comment out if you do not want file copies
-        df.to_csv(full_filename)
+        if save_raw_files == 1:
+            df.to_csv(full_filename)
 
         # Add current file data to main dataframe
         df_all_data = df_all_data.append(df, ignore_index=True)
