@@ -29,7 +29,7 @@ python web_traffic_transformation.py
 ## Output
 The application will output a file named "web_traffic_pivoted.csv" containing data transformed per the requirements in CSV format.
 
-The raw data file can also be output using the "save_raw_files" flag described below.
+The raw data files can also be output using the "save_raw_files" flag described below.
 
 ## Execution Options
 
